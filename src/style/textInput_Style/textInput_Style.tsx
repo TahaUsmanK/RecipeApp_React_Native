@@ -6,7 +6,7 @@ const TextInputStyle = StyleSheet.create({
     borderColor: 'gray',
     borderRadius: 4,
     padding: 10,
-    width: '70%',
+    width: '76%',
   },
 });
 

@@ -1,7 +1,13 @@
 import {getAPIUrl} from '../../config/constants/constants';
 
-const APIService = async (recipeName: string) => {
-  const URL = getAPIUrl(recipeName);
+const APIService = async (
+  recipeName: string,
+  cuisineType: string,
+  diet: string,
+  mealType: string,
+  dishType: string,
+) => {
+  const URL = getAPIUrl(recipeName, cuisineType, diet, mealType, dishType);
   try {
     const response = await fetch(URL, {
       method: 'GET',

@@ -1,36 +1,45 @@
 import {StyleSheet} from 'react-native';
 
 const HomeStyle = StyleSheet.create({
+  main: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
   appBar: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: 16,
+    margin: 4,
   },
   activityIndicator: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     alignContent: 'center',
     alignSelf: 'center',
-    height: '86%',
+    height: '20%',
   },
-  recipeCard: {
+  appBarView: {
     margin: 16,
-    padding: 16,
-    borderRadius: 8,
-    backgroundColor: 'grey',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
   },
-  recipeName: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: 'white',
+  searchText: {
+    fontSize: 48,
+    fontWeight: '400',
+    color: 'black',
+    bottom: 6,
+  },
+  text: {
+    fontSize: 24,
+    fontWeight: '300',
+    color: 'black',
+    bottom: 10,
+  },
+  heading1: {
+    fontSize: 18,
+    fontWeight: '400',
+    color: 'black',
+    marginLeft: 14,
+    marginTop: 14,
   },
 });
 
