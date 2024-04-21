@@ -26,11 +26,11 @@ const HomeScreen = (props: any) => {
   const [textInput, setTextInput] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [cuisineType, setCuisineType] = useState(
-    cuisineTypeArray[1].regionOrCountry,
+    cuisineTypeArray[4].regionOrCountry,
   );
-  const [DietType, setDietType] = useState(DietArray[1].name);
-  const [MealType, setMealType] = useState(MealTypeArray[2].mealType);
-  const [Diet, setDiet] = useState(DietArray[3].name);
+  const [DietType, setDietType] = useState(DietArray[0].name);
+  const [MealType, setMealType] = useState(MealTypeArray[0].mealType);
+  const [Diet, setDiet] = useState(DietArray[0].name);
 
   const submitForm = async () => {
     if (!textInput) {
@@ -112,9 +112,12 @@ const HomeScreen = (props: any) => {
                   iconName={item.iconName}
                   subtitle={item.mealType}
                   onPress={async () => {
+                    setData([]);
                     setIsLoading(true);
                     await fetchData(undefined, undefined, item.mealType);
-                    setIsLoading(false);
+                    if (data.length > 0) {
+                      setIsLoading(false);
+                    }
                   }}
                 />
               )}
@@ -132,9 +135,13 @@ const HomeScreen = (props: any) => {
                   iconName={item.iconName}
                   subtitle={item.regionOrCountry}
                   onPress={async () => {
+                    setData([]);
+
                     setIsLoading(true);
                     await fetchData(item.regionOrCountry);
-                    setIsLoading(false);
+                    if (data.length > 0) {
+                      setIsLoading(false);
+                    }
                   }}
                 />
               )}
@@ -152,9 +159,13 @@ const HomeScreen = (props: any) => {
                   iconName={item.iconName}
                   subtitle={item.name}
                   onPress={async () => {
+                    setData([]);
+
                     setIsLoading(true);
                     await fetchData(undefined, item.name);
-                    setIsLoading(false);
+                    if (data.length > 0) {
+                      setIsLoading(false);
+                    }
                   }}
                 />
               )}
@@ -172,26 +183,34 @@ const HomeScreen = (props: any) => {
                   iconName={item.iconName}
                   subtitle={item.name}
                   onPress={async () => {
+                    setData([]);
+
                     setIsLoading(true);
                     await fetchData(undefined, undefined, undefined, item.name);
-                    setIsLoading(false);
+                    if (data.length > 0) {
+                      setIsLoading(false);
+                    }
                   }}
                 />
               )}
             />
           </View>
           {isLoading ? (
-            <ActivityIndicator
-              size="large"
-              style={HomeStyle.activityIndicator}
-            />
+            <View style={HomeStyle.activityIndicator}>
+              <ActivityIndicator
+                size="large"
+                style={HomeStyle.activityIndicator}
+              />
+            </View>
           ) : errorMessage ? (
             <Text>{errorMessage}</Text>
           ) : (
             data && (
               <FlatList
                 scrollEnabled={false}
-                style={{flex: 1}}
+                style={{
+                  flex: 1,
+                }}
                 data={data}
                 maxToRenderPerBatch={10}
                 keyExtractor={(item, index) => index.toString()}
